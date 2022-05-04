@@ -1,28 +1,53 @@
 
-public class Test {
+public class Test
+{
 
-	
-	int a;
-	int b;
-	int z;
-	public static void main(String[] args) {
-		Test t=new Test(10,20);
-		t.add(t);;
-		
+	public static void main(String[] args)
+	   {
 
-	}
-	public Test(int a, int b) {
-		super();
-		this.a = a;
-		this.b = b;
-		z=a+b;
-		System.out.println("total is "+z);
-	}
-	void add(Test obj) 
-	{
-		z=a+b;
-		System.out.println("z is"+z);
-	}
+		Calculator calc = new Calculator();
+		calc.fun1();
+		System.out.println("---------------------1");
+		calc.fun2(10, 20);
+		System.out.println("---------------------2");
+		int output=calc.fun3(20,30);		
+		System.out.println("sum of X and y is "+output);
+		System.out.println("---------------------3");
+		int out=calc.fun4();
+		System.out.println("Sum is "+out);
+		System.out.println("---------------------4");
+	   }
 
 }
 
+class Calculator 
+{
+
+	void fun1() {
+		int x = 10;
+		int y = 20;
+		int z = (x + y)/2;
+		System.out.println("Average of x and y is:" + z);
+
+	}
+
+	void fun2(int x, int y) {
+		int z = (x + y)/2;
+		System.out.println("" + z);
+	}
+
+	
+
+int fun3(int x,int y) 
+{
+	  int z=(x+y)/2;
+	  return z;
+}
+
+int fun4() 
+{     int x=30;
+       int y=50;
+	  int z=x+y;
+	  return z;
+	  }
+}

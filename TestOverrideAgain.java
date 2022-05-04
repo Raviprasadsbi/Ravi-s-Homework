@@ -2,21 +2,22 @@ public class TestOverrideAgain {
 //Object slicing....
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Executive e=new Manager();
-		e.active();
-		e.breathIn();
-		Person p=new Founder();
-		p.active();
-		
-		
-		Person p1=new Employee();
-		// Employee e1=new Person();
-		//e1.active();
-		p1.giveBirth();
-		p1.active();
-		
-		
-		
+		Person  f = new Founder();
+		f.breathIn();
+		f.breathOut();
+		f.fear();
+		f.reproduction();
+		f.eat();
+		f.sleep();
+		f.giveBirth();
+		f.think();
+		f.active();
+	//	f.study();
+	//	f.work();
+	//	f.execute();
+	//	f.manage();
+	//	f.direct();
+	//	f.found();
 	}
 
 }
