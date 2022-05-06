@@ -1,123 +1,68 @@
+import java.sql.*;
+import java.time.LocalDate;
+import java.util.Calendar;
 
-public class TestInterface2 {
+public class InsertTest2 {
 
-	public static void main(String[] args) {
-		Z obj=new Z();
-		obj.bMethod1();
-		obj.xMethod1();
-
-	}
-
-}
-
-class X
-{
-	void xMethod1() {
-		System.out.println("X method1");
-	}
-	void xMethod2() {
+	public static void main(String[] args) 
+	{
+		try
+		{
+			DriverManager.registerDriver(new org.hsqldb.jdbc.JDBCDriver());
+			System.out.println("Driver loaded.../registered....");
 		
-		System.out.println("X method2");
-	}
-	
-}
-class Y extends X
-{  void yMethod1() {}
-   void yMethod2() {}
-	
-}
-interface A
-{   void aMethod1();
-    void aMethod2();
-	
-}
-interface B extends A
-{
-	void bMethod1();
-	void bMethod2();
+			Connection conn = DriverManager.getConnection("jdbc:hsqldb:hsql://localhost/xdb", "SA", "");
+			System.out.println("Connected to the db....");
+			
+			
+			
+			Statement st = conn.createStatement();
+			System.out.println("statement is created..."+st);
+			int aID=223;
+			String Bname="jack";
+			String Bemail="xyz@gmail.com";
+			String Baddress="Mumbai";
+			String BmobileNumber="9703254912";
+			
+			ResultSet rs = st.executeQuery("SELECT * FROM BANK_APPLICANT WHERE APPLICANT_ID="+aID);
+			if(rs.next())
+			{
+				throw new SQLException("already exists"+aID);
+				}
+			else {
+						
+			
+			PreparedStatement pst = conn.prepareStatement("INSERT INTO BANK_APPLICANT VALUES (?,?,?,?,?,?) ");
+		     pst.setInt(1, aID);
+			 pst.setString(2, Bname);
+			 pst.setString(3, Bemail);
+			 pst.setString(4, Baddress);
+			 pst.setString(5, BmobileNumber);
+			
+			Calendar cal = Calendar.getInstance();
+			java.util.Date date = cal.getTime();
+			
+			java.sql.Date sqlDate= new java.sql.Date(date.getTime());
+			pst.setDate(6,sqlDate);
+			System.out.println("prepared statement is created..."+pst);
+			
+			int row = pst.executeUpdate();
+			System.out.println("row inserted..."+row);
 
-}
-interface P
-{
-	void pMethod1();
-	void pMethod2();
-
-}
-interface Q extends P
-{
-	void qMethod1();
-	void qMethod2();
-
-}
-
-interface R extends Q
-{
-	void rMethod1();
-	void rMethod2();
-
-}
-
-class Z extends Y implements B,R
-{
-
-	@Override
-	public void pMethod1() {
-		// TODO Auto-generated method stub
+			pst.close();
+			conn.close();
+			System.out.println("DisConnected from the db....");
+			
+		}
+			
 		
-	}
-
-	@Override
-	public void pMethod2() {
-		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void aMethod1() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void aMethod2() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void qMethod1() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void qMethod2() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void rMethod1() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void rMethod2() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void bMethod1() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void bMethod2() {
-		// TODO Auto-generated method stub
+		}
+		catch(SQLException e) {
+			System.out.println("Some problem : "+e);
+		}
 		
 	}
 	
 }
+
