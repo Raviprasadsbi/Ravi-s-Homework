@@ -1,0 +1,42 @@
+1.ok
+insert into applicant values
+(20220016,'01-JAN-1999','1-600 NGO Colony Madhira Khammam Telangana 507203',700000,'23-MAY-2022','Applied Successfully','Saving Account','12-JAN-1982',
+'Post Graduate','ramakrishna@gmail.com','Sanjeevaiah','Rama','Male',NULL,NULL,854578459655,'Aadhar Number','Mogili','Married','Krishna','Manjula',
+'1-600 NGO Colony Madhira Khammam Telangana 507203','Chinnari','Daughter','PSU','krofjd154g',8576524845,'Christian',NULL,'Saroja','Mr.');
+
+
+2.ok
+insert into applicant values
+(20220015,'15-FEB-2000','2-50-1/A Nararayana Mudali Street Chennai 600079',850000,'23-APRIL-2022','Applied Successfully','Saving Account','12-JUL-1999',
+'Post Graduate','Acharyanandan@gmail.com','Padmanabha Narasinha','Acharyanandana','Male',NULL,NULL,114524587895,'Aadhar Number','Hiranandani','Married','hirani','Soundrapandian',
+'2-50-1/A Nararayana Mudali Street Chennai 600079','Ritula','Daughter','PSU','bkfpke564k',8246854264,'Hindu',NULL,'Mrunalini','Mr.');
+
+
+3.
+
+insert into applicant values
+(20220017,'21-DEC-2001','51-1/A Pushpa Market Delhi 110024',650000,'20-APRIL-2022','Applied Successfully','Current Account','15-JUL-1995',
+'Graduate','pusan@gmail.com','Satindra Yashodhar','Pusan','Male',NULL,NULL,565845784514,'Aadhar Number','Lakshmigopal','Married','Barindra','Lakshmi',
+'51-1/A Pushpa Market Delhi 110024','Roshan','son','PSU','hdgyg2154h',9854751254,'Hindu',NULL,'Ragini','Mr.');
+
+
+4.ok
+insert into applicant values
+(20220018,'05-JUL-1999','B-7, Sahayog, Refinery Road, Gorwa Vadodara Gujarat 390016',565000,'25-MAY-2022','Applied Successfully','Saving Account','12-JUL-1980',
+'Post Graduate','bhagwan@gmail.com','Abhyudaya Shubhabrata','Bhagwant','Male',NULL,NULL,856598547415,'Aadhar Number','Dhritiman','Married','Srivatsan','Bhagyawati Punitha',
+'B-7, Sahayog, Refinery Road, Gorwa Vadodara Gujarat 390016','Surekha Nilani','Daughter','PSU','hdgsb8547l',8545784512,'Jain',NULL,'Aparna Nageswari','Mr.');
+
+
+5.ok
+
+insert into applicant values
+(20220019,'21-SEP-2000','53-4-85 MoghalrajPuram Vijayawada AndhraPradesh 520008',652000,'15-MAY-2022','Rejected','Saving Account','12-NOV-1989',
+'Post Graduate','Sajidvali@gmail.com','Imran Khan','sajid','Male',NULL,NULL,1856525418745,'Aadhar Number','Mohammad','Married','Valli','Irfana Begum',
+'53-4-85 MoghalrajPuram Vijayawada AndhraPradesh 520008','akram','son','PSU','kfjdu548k',8542587455,'Muslim','Current Address proof required','Sajida Begum','Mr.');
+
+
+
+
+
+
+
