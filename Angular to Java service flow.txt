@@ -1,0 +1,108 @@
+
+.html
+
+
+<button class="btn" (click)="editStatus(applicantDetails)">APPROVE  </button>
+
+
+========================================================================
+component.ts
+
+
+message!:string;
+editStatus(applObj:ApplicantDetails) {
+  this.ads.updateSingleApplicantService(applObj).subscribe({
+  
+    next:(data:string) => {
+      console.log('~~next : Applicant is updated');
+      this.message=data;
+      //console.log(this.message);
+    },
+    
+    error:(err) => {
+      //this.message=err.error;
+      console.log(err);
+      
+      alert(err);
+      this.message=err.error;
+      console.log(err);
+    },
+    complete:()=>{
+    console.log('~~~Completed');
+    }
+});
+this.viewall()
+
+}
+=======================================================================
+services.ts
+
+
+export class ApplicantDetailsService {
+
+  constructor(private myHttp: HttpClient) { }
+  
+     loadAllApplicantDetailsService() : Observable<ApplicantDetails[]> {
+       return this.myHttp.get<ApplicantDetails[]>("http://localhost:8080/applicants/")
+    }
+  
+    loadApplicantDetailsByIdService(x:number) : Observable<ApplicantDetails>  {
+      return this.myHttp.get<ApplicantDetails>("http://localhost:8080/applicants/"+x);
+    }
+    
+    updateSingleApplicantService(applicant:ApplicantDetails) : Observable<string> { // localhost:4200
+      console.log('updateSingleApplicantService() invoked.....');
+      return this.myHttp.put<string>("http://localhost:8080/applicants/updateAppl",applicant,{responseType: 'text' as 'json'});
+    }
+
+    loadApplicantDetailByStatusService(x:string) : Observable<ApplicantDetails>  {
+      return this.myHttp.get<ApplicantDetails>("http://localhost:8080/applicants/"+x);   
+    }
+  }
+======================================================================================
+controller
+
+
+
+
+@PutMapping("/updateAppl/{status}")
+	public String updateApplicant(@PathVariable("status") String status, @RequestBody BankApplicant applicantData)
+	{ 	//https://localhost:8080/applicants/updateAppl
+		
+		System.out.println("Bank Applicant : updateApplicant is invoked....");
+		bankApplicantService.modifyApplicantStatusService(applicantData.getApplicantId(),status);	
+		return "Applicant Updated.......";
+	}
+=====================================================================================
+
+service
+
+
+
+
+@Override
+	public void modifyApplicantStatusService(int appid ,String newStatusValue) 
+	{
+		
+		BankApplicant bankApplicant = bankApplicantRepository.getApplicantById(appid);
+		if(bankApplicant!=null) {
+			bankApplicant.setApplicationStatus(newStatusValue);
+			bankApplicantRepository.updateApplicant(bankApplicant);
+
+			if(newStatusValue.equals("Approved")) {
+				mailService.sendMail("Dear Sir, Your Application with Applicant Id"
+			        +bankApplicant.getApplicantId()+" got "+newStatusValue+" for Account Opening. "
+			        + "Thank You for Banking With Us!..", bankApplicant.getEmail());
+				System.out.println("approval mail sent...");
+			}
+			else if(newStatusValue.equals("Rejected")) {
+				mailService.sendMail("Dear Sir, Your Application with Applicant Id"+bankApplicant.getApplicantId()
+				+" got "+newStatusValue+" due to KYC not matched. Please visit the Branch with ", bankApplicant.getEmail());
+				System.out.println("Rejection mail sent...");
+			}
+		}
+		else {
+			throw new RuntimeException("Applicant not found");
+		}
+		
+	}
